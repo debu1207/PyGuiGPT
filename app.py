@@ -11,8 +11,8 @@ import time
 load_dotenv()
 API_KEY= os.getenv('API_KEY')
 current_path = os.path.dirname(os.path.realpath(__file__))
-set_appearance_mode("dark")
-set_default_color_theme("dark-blue")
+set_appearance_mode("light")
+set_default_color_theme("green")
 
 class Message():
     def __init__(self, window, prompt, message, row, height):
@@ -50,6 +50,7 @@ class Message():
             self.window, 
             width=620,
             height=self.height,
+            text_color='white',
             font=("Consolas", 15),
             fg_color="#064FA0"
         )
@@ -91,11 +92,6 @@ class App(CTk):
         self.title("PyGuiGPT")
         self.geometry("720x580")
         self.resizable(False, False)
-        self.configure(fg_color="#3190FC")
-
-        # self.bg_image = CTkImage(Image.open("bg_gradient.jpg"), size=(self.width, self.height))
-        # self.bg_image_label = CTkLabel(self, image=self.bg_image)
-        # self.bg_image_label.grid(row=0, column=0)
 
         # Set App Heading
         self.heading = CTkLabel(
@@ -111,7 +107,6 @@ class App(CTk):
             self,
             width=665,
             height=50,
-            fg_color="#3190FC"
         )
         self.searchFrame.place(x=30, y=50)
 
@@ -130,7 +125,6 @@ class App(CTk):
             text="",
             width=15,
             height=20,
-            fg_color="#3190FC",
             image=self.searchIcon,
             command=self.searchPrompt
         )
@@ -143,7 +137,6 @@ class App(CTk):
             width=15,
             height=20,
             image=self.clearIcon,
-            fg_color="#3190FC",
             command=self.clearPrompt
         )
         self.clearBtn.place(x=620, y=10)
@@ -152,7 +145,8 @@ class App(CTk):
             self,
             width=642,
             height=400,
-            fg_color="#3190FC"
+            scrollbar_button_color='grey', 
+            scrollbar_button_hover_color='blue'
         )
         self.response.place(x=30, y=130)
         self.promptEntry.focus_force()
